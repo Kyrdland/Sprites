@@ -6,19 +6,16 @@ let currentFPS = 0;
 let frameCount = 0;
 //UNIX = 19191881898 1 Enero de 1970
 
-const loop = () =>
-{
+const loop = () => {
 	window.requestAnimationFrame(loop);
 	updateFPS();
 	console.log(currentFPS);
 }
 
-const updateFPS = () =>
-{
+const updateFPS = () => {
 	let iniTime = new Date().getTime();
 
-	if(iniTime - lastTime > 1000)
-	{
+	if (iniTime - lastTime > 1000) {
 		currentFPS = frameCount;
 		frameCount = 0;
 		lastTime = iniTime;
