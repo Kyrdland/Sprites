@@ -2,24 +2,29 @@ let cv = window.document.getElementById('cv');
 let ctx = cv.getContext('2d');
 // let lastTime = new Date().getTime(), currentFPS = 0, frameCount = 0;
 
-cv.width = 292;
-cv.height = 292;
+
 
 let kirby = new Image();
 
 kirby.src = 'img/standby.png';
-kirby.addEventListener('load', loop, false);
+kirby.addEventListener('load', pre, false);
 
 let numCol = 16;
 let numFil = 2;
 let widthKirby;
 let heightKirby;
 
-function loop()
+function pre()
 {
 	widthKirby = kirby.width / numCol;
 	heightKirby = kirby.height / numFil;
+	cv.width = widthKirby;
+	cv.height = heightKirby;
+	loop();
+}
 
+function loop()
+{
 	draw();
 	requestAnimationFrame(loop);
 }
