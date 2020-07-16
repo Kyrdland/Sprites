@@ -1,9 +1,30 @@
 let cv = document.getElementById('cv');
 let ctx = cv.getContext('2d');
 
-console.log('Hola q px!');
+let lastTime = new Date().getTime();
+let currentFPS = 0;
+let frameCount = 0;
+//UNIX = 19191881898 1 Enero de 1970
 
 function loop()
 {
-
+	window.requestAnimationFrame(loop);
+	updateFPS();
+	console.log(currentFPS);
 }
+
+function updateFPS()
+{
+	let iniTime = new Date().getTime();
+
+	if(iniTime - lastTime > 1000)
+	{
+		currentFPS = frameCount;
+		frameCount = 0;
+		lastTime = iniTime;
+	}
+
+	frameCount++;
+}
+
+loop();
