@@ -1,27 +1,56 @@
 let cv = document.getElementById('cv');
 let ctx = cv.getContext('2d');
 
-let lastTime = new Date().getTime();
-let currentFPS = 0;
-let frameCount = 0;
-//UNIX = 19191881898 1 Enero de 1970
+let kirby = new Image();
+
+kirby.src = 'img/standby.png';
+kirby.addEventListener('load', pre);
+
+let numCol = 16;
+let numRow = 2;
+let widthKirby;
+let heightKirby;
+let frameKirbyX = 0;
+let frameKirbyY = 0;
+
 
 const loop = () => {
-	window.requestAnimationFrame(loop);
-	updateFPS();
-	console.log(currentFPS);
+	update();
+	draw();
+	requestAnimationFrame(loop);
 }
 
-const updateFPS = () => {
-	let iniTime = new Date().getTime();
+const update = () => {
+	frameKirbyX++;
+	frameKirbyY++;
 
-	if (iniTime - lastTime > 1000) {
-		currentFPS = frameCount;
-		frameCount = 0;
-		lastTime = iniTime;
-	}
-
-	frameCount++;
+	frameKirbyX = frameKirbyX % numCol;
+	frameKirbyY = frameKirbyY % numRow;
 }
 
-loop();
+function pre(){
+	widthKirby = kirby.width / numCol;
+	heightKirby = kirby.height / numRow;
+	cv.width = widthKirby;
+	cv.height = heightKirby;
+	loop();
+}
+
+const draw = () => {
+	cv.width = cv.width;
+	cv.height = cv.height;
+
+	ctx.drawImage(kirby, (frameKirbyX * widthKirby), 0, widthKirby, heightKirby, 0, 0, widthKirby, heightKirby);
+}
+
+// const updateFPS = () => {
+// 	let iniTime = new Date().getTime();
+
+// 	if (iniTime - lastTime > 1000) {
+// 		currentFPS = frameCount;
+// 		frameCount = 0;
+// 		lastTime = iniTime;
+// 	}
+
+// 	frameCount++;
+// }
