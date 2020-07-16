@@ -13,6 +13,8 @@ let numCol = 16;
 let numFil = 2;
 let widthKirby;
 let heightKirby;
+let frameKirbyX = 0;
+let frameKirbyY = 0;
 
 function pre()
 {
@@ -25,17 +27,27 @@ function pre()
 
 function loop()
 {
+	update();
 	draw();
 	requestAnimationFrame(loop);
+}
+
+function update()
+{
+	frameKirbyX++;
+	frameKirbyY++;
+
+	frameKirbyX = frameKirbyX % numCol;
+	frameKirbyY = frameKirbyY % numFil;
+
 }
 
 function draw()
 {
 	cv.width = cv.width;
 	cv.height = cv.height;
-
 	// image, ix, iy, iwidth, iheight, cx, cy, cwidth, cheight
-	ctx.drawImage(kirby, 0 , 0, kirby.width, kirby.height, 0, 0, kirby.width, kirby.height);
+	ctx.drawImage(kirby, (frameKirbyX * widthKirby), 0, widthKirby, heightKirby, 0, 0, widthKirby, heightKirby);
 }
 
 // function updateFPS()
