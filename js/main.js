@@ -1,30 +1,38 @@
-let cv = document.getElementById('cv');
+let cv = window.document.getElementById('cv');
 let ctx = cv.getContext('2d');
 
-let lastTime = new Date().getTime();
-let currentFPS = 0;
-let frameCount = 0;
-//UNIX = 19191881898 1 Enero de 1970
+// let lastTime = new Date().getTime(), currentFPS = 0, frameCount = 0;
+
+let kirby = new Image();
+
+kirby.src = 'img/standby.png';
+
+kirby.addEventListener('load', loop, false);
 
 function loop()
 {
-	window.requestAnimationFrame(loop);
-	updateFPS();
-	console.log(currentFPS);
+	draw();
+	requestAnimationFrame(loop);
 }
 
-function updateFPS()
+function draw()
 {
-	let iniTime = new Date().getTime();
+	cv.width = cv.width;
+	cv.height = cv.height;
 
-	if(iniTime - lastTime > 1000)
-	{
-		currentFPS = frameCount;
-		frameCount = 0;
-		lastTime = iniTime;
-	}
-
-	frameCount++;
+	ctx.drawImage(kirby, 0 , 0);
 }
 
-loop();
+// function updateFPS()
+// {
+// 	let iniTime = new Date().getTime();
+
+// 	if(iniTime - lastTime > 1000)
+// 	{
+// 		currentFPS = frameCount;
+// 		frameCount = 0;
+// 		lastTime = iniTime;
+// 	}
+
+// 	frameCount++;
+// }
