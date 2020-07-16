@@ -34,9 +34,8 @@ function draw()
 	cv.width = cv.width;
 	cv.height = cv.height;
 
-	console.log(widthKirby + ' x ' + heightKirby);
-
-	ctx.drawImage(kirby, 0 , 0);
+	// image, ix, iy, iwidth, iheight, cx, cy, cwidth, cheight
+	ctx.drawImage(kirby, 0 , 0, kirby.width, kirby.height, 0, 0, kirby.width, kirby.height);
 }
 
 // function updateFPS()
