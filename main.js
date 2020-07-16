@@ -5,9 +5,23 @@ let kirby = new Image();
 kirby.src = 'img/standby.png'
 kirby.addEventListener('load', loop,false);
 
-let lastTime = new Date().getTime(); 
+let numCol = 16;
+let numFil = 2;
+let widthKirby;
+let heightKirby;
+
+let lastTime = new Date().getTime(); 1
 let currentFPS = 0; 
 let frameCount = 0;
+
+function pre()
+{
+    widthKirby = kirby.width / numCol;
+    heightKirby = kirby.height / numFil;
+    cv.width =widthKirby;
+    cv.height = heightKirby;
+    loop();
+}
 
 function loop()
 {
@@ -19,8 +33,7 @@ function loop()
 
 function draw()
 {
-    cv.width =cv.width;
-    cv.height = cv.height;
+    console.log(widthKirby + ' x ' + heightKirby);
     ctx.drawImage(kirby, 0, 0);
 }
 // function updateFPS()
